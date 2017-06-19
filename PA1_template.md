@@ -18,7 +18,7 @@ We first compute the total number of steps taken per day
 ```r
 totalsteps<-with(activity, sapply(split(steps, date),sum))
 dates<-unique(activity$date)
-plot(dates,totalsteps, type = "h")
+plot(dates,totalsteps, type = "h", main="mean total number of steps per day")
 ```
 
 ![](PA1_template_files/figure-html/summary-1.png)<!-- -->
@@ -35,7 +35,7 @@ Firts we have to aggregate the data by 5-minutes intervals.
 
 ```r
 intervalstat<-aggregate(steps~interval, data=activity, mean, na.rm=TRUE)
-with(intervalstat, plot(interval, steps, type="l"))
+with(intervalstat, plot(interval, steps, type="l", main="average daily activity pattern"))
 ```
 
 ![](PA1_template_files/figure-html/intervalstat-1.png)<!-- -->
@@ -85,7 +85,7 @@ First with the histogram
 
 ```r
 totalsteps<-with(activity.imp, sapply(split(steps, date),sum))
-plot(dates,totalsteps, type = "h")
+plot(dates,totalsteps, type = "h", main="mean total number of steps per day (imputed data)")
 ```
 
 ![](PA1_template_files/figure-html/imp.summary-1.png)<!-- -->

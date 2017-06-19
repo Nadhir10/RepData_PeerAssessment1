@@ -25,7 +25,7 @@ We first compute the total number of steps taken per day
 ```{r summary}
 totalsteps<-with(activity, sapply(split(steps, date),sum))
 dates<-unique(activity$date)
-plot(dates,totalsteps, type = "h")
+plot(dates,totalsteps, type = "h", main="mean total number of steps per day")
 mean.steps<-mean(totalsteps, na.rm = TRUE)
 median.steps<-median(totalsteps, na.rm = TRUE)
 ```
@@ -36,7 +36,7 @@ for the total number of steps taken per day, the mean is `r mean.steps` and the 
 Firts we have to aggregate the data by 5-minutes intervals.
 ```{r intervalstat}
 intervalstat<-aggregate(steps~interval, data=activity, mean, na.rm=TRUE)
-with(intervalstat, plot(interval, steps, type="l"))
+with(intervalstat, plot(interval, steps, type="l", main="average daily activity pattern"))
 maxnb<-intervalstat$interval[which.max(intervalstat$steps)]
 ```
 The interval `r maxnb` contains, on average, the maximum number of steps. 
@@ -67,7 +67,7 @@ Now we make a similar summary for the imputed data.
 First with the histogram
 ```{r imp.summary}
 totalsteps<-with(activity.imp, sapply(split(steps, date),sum))
-plot(dates,totalsteps, type = "h")
+plot(dates,totalsteps, type = "h", main="mean total number of steps per day (imputed data)")
 mean.imp<-mean(totalsteps, na.rm = TRUE)
 median.imp<-median(totalsteps, na.rm = TRUE)
 ```
